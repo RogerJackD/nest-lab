@@ -12,11 +12,11 @@ export class UserService{
         private readonly userRepository : Repository<User>
     ){}
 
-    async finAll(){
-        return await this.userRepository.findOneBy({})
+    async finAll(): Promise<User[]> {
+        return await this.userRepository.find();
     }
 K
-    async finOne( id: string ){
+    async finOne( id: string ): Promise<User> {
 
         const user = await this.userRepository.findOneBy({ id })
         if( !user ) throw new BadRequestException(`user with id ${ id } doesnt exist`);
@@ -24,7 +24,7 @@ K
         return  user
     }
 
-    async create( createUserDto : CreateUserDto ){
+    async create( createUserDto : CreateUserDto ): Promise<User> {
 
         try {
             const user = this.userRepository.create( createUserDto );
@@ -49,7 +49,7 @@ K
         return 'action successfully'
     }
 
-    private handleExceptiosnDb( error ){
+    private handleExceptiosnDb( error: any ): never {
         if ( error.code === '23505') {
             throw new BadRequestException(error.detail)
         }
