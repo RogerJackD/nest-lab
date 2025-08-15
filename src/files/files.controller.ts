@@ -8,8 +8,9 @@ export class FilesController{
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile( new FileSizeValidationPipe() ) file: Express.Multer.File) {
-    console.log(file);
+  uploadFile(@UploadedFile( new FileSizeValidationPipe( 1 ) ) file: Express.Multer.File) {
+    console.log(file)
+    return file
   }
 
 
