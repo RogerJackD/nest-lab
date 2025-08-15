@@ -16,7 +16,7 @@ export class UserService{
     async finAll(): Promise<User[]> {
         return await this.userRepository.find();
     }
-K
+
     async finOne( id: string ): Promise<User> {
 
         const user = await this.userRepository.findOneBy({ id })

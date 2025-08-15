@@ -3,6 +3,7 @@ import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsModule } from './events/events.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [ 
@@ -18,6 +19,7 @@ import { EventsModule } from './events/events.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    FilesModule,
     UserModule,
     EventsModule, 
   ],
