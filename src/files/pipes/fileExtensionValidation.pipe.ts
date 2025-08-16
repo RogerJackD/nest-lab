@@ -8,7 +8,6 @@ export class FileExtensionValidationPipe implements PipeTransform {
 
     transform(file: Express.Multer.File , metadata: ArgumentMetadata) {
 
-        console.log(file)
         const allowedExtensions : string[] = ['.jpg', '.png'];
 
         if( !file )
@@ -17,7 +16,8 @@ export class FileExtensionValidationPipe implements PipeTransform {
         const fileExt = extname( file.originalname );
         console.log( fileExt )
         if( !allowedExtensions.includes( fileExt ) )
-            throw new BadRequestException(`file not have a valid extension - valid entensions ${allowedExtensions.join(' & ')} `);
+
+            throw new BadRequestException(' file not have a valid extension ');
 
         return file;
 
