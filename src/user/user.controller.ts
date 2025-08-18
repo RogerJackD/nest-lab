@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, SetMetadata, UseGuards } from "@nestjs/common";
 import { UserService } from './user.service';
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { UseRoleAdminGuard } from "./guards/use-role-admin.guard";
 
 @Controller('user')
 export class UserController{
@@ -16,6 +17,8 @@ export class UserController{
     }
 
     @Get(':id')
+    @SetMetadata('hello', ['world','admin'])
+    @UseGuards( UseRoleAdminGuard )
     finOne(@Param('id', ParseUUIDPipe) id : string){
         return this.userService.finOne( id );
     }
