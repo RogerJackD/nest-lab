@@ -17,7 +17,9 @@ export class UseRoleAdminGuard implements CanActivate {
 
         console.log(metaDataFound)
         
-        console.log(context);
+        const request = context.switchToHttp().getRequest()
+
+        console.log(request)
 
         return true
     }
