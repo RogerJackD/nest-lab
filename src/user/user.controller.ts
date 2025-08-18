@@ -17,7 +17,7 @@ export class UserController{
     }
 
     @Get(':id')
-    @SetMetadata('hello', ['world','admin'])
+    @SetMetadata('hello', 'world')
     @UseGuards( UseRoleAdminGuard )
     finOne(@Param('id', ParseUUIDPipe) id : string){
         return this.userService.finOne( id );
