@@ -13,14 +13,12 @@ export class UseRoleAdminGuard implements CanActivate {
         context: ExecutionContext
     ): boolean | Promise<boolean> | Observable<boolean> {
         
-        const metaDataFound = this.reflector.get<string[]>('hello', context.getHandler());
-
+        const metaDataFound: string[] = this.reflector.get('hello', context.getHandler());
         console.log(metaDataFound)
         
-        const request = context.switchToHttp().getRequest()
-
-        console.log(request)
-
+        //!extraer data extra como user:
+        // const request = context.switchToHttp().getRequest()
+        // console.log(request)
         return true
     }
 }

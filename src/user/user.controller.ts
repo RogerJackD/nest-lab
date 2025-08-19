@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UseRoleAdminGuard } from "./guards/use-role-admin.guard";
+import { ValidRoles } from "./interfaces/valid-roles";
 
 @Controller('user')
 export class UserController{
@@ -17,9 +18,9 @@ export class UserController{
     }
 
     @Get(':id')
-    @SetMetadata('hello', 'world')
+    @SetMetadata('hello', ValidRoles.admin )
     @UseGuards( UseRoleAdminGuard )
-    finOne(@Param('id', ParseUUIDPipe) id : string){
+    findOne(@Param('id', ParseUUIDPipe) id : string){
         return this.userService.finOne( id );
     }
 
