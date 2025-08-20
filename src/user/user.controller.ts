@@ -4,6 +4,7 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UseRoleAdminGuard } from "./guards/use-role-admin.guard";
 import { ValidRoles } from "./interfaces/valid-roles";
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller('user')
 export class UserController{
@@ -19,7 +20,7 @@ export class UserController{
 
     @Get(':id')
     @SetMetadata('hello', ValidRoles.admin )
-    @UseGuards( UseRoleAdminGuard )
+    @UseGuards( AuthGuard() )
     findOne(@Param('id', ParseUUIDPipe) id : string){
         return this.userService.finOne( id );
     }
