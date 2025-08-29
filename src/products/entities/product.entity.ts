@@ -17,13 +17,13 @@ export class Product {
     })
     price: number
     
-    @Column('text')
+    @Column('text',{
+        nullable: true
+    })
     description: string
 
-    
-    @Column('text',{
 
-    })
+    @Column('text')
     main_image: string
 
     @Column('text',{
