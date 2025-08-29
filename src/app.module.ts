@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsModule } from './events/events.module';
 import { FilesModule } from './files/files.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [ 
@@ -19,9 +20,8 @@ import { FilesModule } from './files/files.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    FilesModule,
     UserModule,
-    EventsModule, 
+    ProductsModule,
   ],
   controllers: [],
   providers: [],
